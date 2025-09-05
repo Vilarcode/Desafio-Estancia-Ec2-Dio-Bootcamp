@@ -1,106 +1,87 @@
-# Desafio-Estancia-Ec2-Dio-Bootcamp
+🚀 Desafio Estância EC2 – DIO Bootcamp
 
-Este projeto apresenta um fluxo arquitetural desenvolvido em AWS Cloud, com foco em armazenamento, processamento e backup de dados.
-A ideia é demonstrar como um usuário interage com o sistema desde o login até o processamento e a persistência dos dados, seguindo práticas de escalabilidade, automação e segurança.
+Este projeto apresenta uma arquitetura em AWS Cloud para armazenamento, processamento e backup de dados, com foco em escalabilidade, automação e segurança.
+O objetivo é demonstrar como os dados percorrem todo o ciclo dentro da nuvem, desde o login do usuário até o backup seguro.
 
-Essa arquitetura reflete um ciclo completo de dados, englobando:
-
-Entrada do usuário
-
-Transferência e upload
-
-Processamento automático
-
-Armazenamento seguro
-
-Backup para recuperação de desastres
+📌 Diagrama da Arquitetura
 
 🛠️ Fluxo do Processo
-1️⃣ Usuário e Login
 
-O processo inicia com a interação do usuário. Ele realiza login em uma aplicação cliente, que garante autenticação e controle de acesso.
-👉 Esse passo é essencial para segurança e governança do ambiente.
+1️⃣ Usuário e Login
+O usuário acessa o sistema, realiza o login e garante a autenticação e controle de acesso.
+🔒 Segurança é a base para governança em cloud.
 
 2️⃣ Transferência de Dados
-
-Após o login, os dados são enviados para a nuvem por meio de um processo de transferência segura, geralmente via protocolos HTTPS ou integração com AWS SDK/CLI.
+Os dados são enviados para a nuvem através de protocolos seguros (HTTPS/AWS SDK/CLI).
 
 3️⃣ Armazenamento Inicial (Amazon S3)
 
-Os dados são armazenados no Amazon S3, que atua como ponto central de entrada.
+Ponto central de entrada dos dados.
 
-Escalabilidade quase ilimitada
+Escalabilidade quase ilimitada.
 
-Alta durabilidade (99.999999999%)
+Durabilidade de 99,999999999%.
 
-Integração nativa com outros serviços AWS
+Integração com outros serviços AWS.
 
 4️⃣ Upload Automatizado (AWS Lambda)
 
-Quando os arquivos chegam ao bucket S3, uma função Lambda é acionada automaticamente.
+Acionado automaticamente quando arquivos chegam no S3.
 
-Gatilho event-driven
+Executa código sob demanda (event-driven).
 
-Executa código sob demanda
+Encaminha dados para a instância de processamento.
 
-Encaminha os dados para a instância de processamento
+5️⃣ Processamento (Amazon EC2)
 
-Esse modelo elimina a necessidade de servidores dedicados para orquestração.
+EC2 recebe os dados para processamento.
 
-5️⃣ Processamento de Dados (Amazon EC2)
+Configuração com AMIs customizadas.
 
-Uma instância de Amazon EC2 recebe os dados e realiza o processamento necessário.
+Escalabilidade via Auto Scaling Groups.
 
-Pode ser configurada com imagens customizadas (AMIs)
-
-Permite escalabilidade horizontal (Auto Scaling Groups)
-
-Oferece flexibilidade para cargas de trabalho diversas
+Flexibilidade para diferentes cargas de trabalho.
 
 6️⃣ Armazenamento Pós-Processamento
 
-Após o processamento, os resultados são novamente armazenados em repositórios dedicados na nuvem.
+Dados originais e processados ficam separados.
 
-Mantém dados originais e processados separados
-
-Facilita auditoria, análise e consultas futuras
+Facilita auditoria, análises e consultas futuras.
 
 7️⃣ Backup e Recuperação
 
-Para garantir resiliência, o ambiente possui backup automático dos dados e da imagem da instância.
+Backup automático dos dados e AMIs.
 
-Reduz riscos em caso de falha
+Resiliência contra falhas.
 
-Garante alta disponibilidade
+Suporte a Disaster Recovery.
 
-Suporta disaster recovery
+🔐 Segurança na Arquitetura
 
-🚀 Benefícios da Arquitetura
+A arquitetura foi desenhada com foco em camadas de segurança, seguindo boas práticas da AWS:
 
-✔️ Escalabilidade → Cresce junto com a demanda
-✔️ Automação → Upload e processamento automáticos
-✔️ Segurança → Controle de acesso, autenticação e backups
-✔️ Custo-Efetivo → Paga-se apenas pelo uso dos recursos
-✔️ Resiliência → Dados sempre protegidos contra falhas
+IAM (Identity and Access Management) → usuários e permissões com princípio de menor privilégio
 
-🔮 Aplicações Futuras
+Criptografia (KMS/S3 Encryption) → dados criptografados em repouso e em trânsito
 
-Essa arquitetura pode ser expandida para:
+Proteção de Instâncias → Security Groups e NACLs para controlar tráfego
 
-Machine Learning (SageMaker) → Treinar modelos com dados processados
+Backup Seguro → imagens (AMIs) e snapshots armazenados em ambientes protegidos
 
-Data Lake → Integração com Athena/Glue/Redshift
+Governança → monitoramento via CloudTrail e CloudWatch Logs para auditoria e alertas
 
-Monitoramento Avançado → Uso de CloudWatch + CloudTrail
+✅ Benefícios da Arquitetura
 
-👨‍💻 Sobre o Projeto
+✔️ Escalabilidade → cresce conforme a demanda
+✔️ Automação → upload e processamento sem intervenção manual
+✔️ Segurança Reforçada → autenticação, criptografia, IAM e monitoramento
+✔️ Custo-Efetivo → paga apenas pelo uso dos recursos
+✔️ Resiliência → dados sempre protegidos contra falhas
 
-Este repositório tem como objetivo demonstrar boas práticas em arquitetura cloud com AWS.
-Mais do que tecnologia, a proposta é mostrar como a nuvem pode ser usada para:
+🔮 Expansões Futuras
 
-Organizar dados
+Machine Learning (SageMaker) → treinar modelos com os dados processados
 
-Gerar insights
+Data Lake → integração com Athena, Glue e Redshift
 
-Garantir segurança e confiança
-
+Monitoramento Avançado → CloudWatch + CloudTrail para observabilidade
